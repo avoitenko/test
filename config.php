@@ -3,8 +3,8 @@
 //--- временная зона
 date_default_timezone_set('UTC');
 
-$CRYPT_KEY = "222f40a7068d337550b428f477e40b7a";
-$SESSION_LIFETIME_SEC = 86400; // Время жизни сессии (в секундах).
+$CRYPT_KEY = "222f40a7068d337550b428f477e40b7a";// ключ шифрования
+
 //--- настройка кодировки Unicode
 mb_internal_encoding('UTF-8');
 mb_http_output('UTF-8');
@@ -14,14 +14,18 @@ mb_regex_encoding('UTF-8');
 ob_start('mb_output_handler');
 
 //--- настройки базы данных
+//для localhost
 $DB_LOGIN = 'root';
 $DB_PASSWORD = 'root';
 $DB_NAME = 'mt4ind';
+
 /*
-  $DB_LOGIN = 'avaticks_test'; //root
-  $DB_PASSWORD = 'r3vcbcxa'; //root
-  $DB_NAME = 'avaticks_test'; //mt4ind
+// для хостинга
+    $DB_LOGIN = 'avaticks_test'; //root
+    $DB_PASSWORD = 'r3vcbcxa'; //root
+    $DB_NAME = 'avaticks_test'; //mt4ind
  */
+
 $DB_HOST = 'localhost';
 $DB_TABLE_USERS = 'users';
 $DB_TABLE_SIGNALS = 'signals';
@@ -40,6 +44,7 @@ define("ERR_ACCOUNT_BLOCKED", ERR_USER_ERROR_FIRST + 3);
 define("ERR_INVALID_SYMBOL", ERR_USER_ERROR_FIRST + 4);
 define("ERR_NOT_CONNECTED", ERR_USER_ERROR_FIRST + 5);
 define("ERR_WRONG_REQUEST", ERR_USER_ERROR_FIRST + 6); // ошибка в запросе
+
 //+------------------------------------------------------------------+
 mysql_connect($DB_HOST, $DB_LOGIN, $DB_PASSWORD) or die(mysql_error());
 mysql_select_db($DB_NAME) or die(mysql_error());

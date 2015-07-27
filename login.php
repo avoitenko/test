@@ -17,7 +17,7 @@ $alfa = $_REQUEST['alfa'];
 $params = $base64->decode($alfa, $CRYPT_KEY, true);
 parse_str($params);
 
-//--- проверка логина
+//--- проверка параметров
 if (!isset($login) || !isset($password) || !isset($symbol)) {
     $str_result = "error=" . ERR_WRONG_REQUEST;
     $str_result .= "&error_desc=2";
@@ -59,7 +59,7 @@ $now = time(); //unix
 mysql_free_result($result);
 
 
-//--- проверка по времени
+//--- подписка не прошла проверку по времени
 if ($now > $exp_time) {
     $str_result = "error=" . ERR_ACCOUNT_BLOCKED;
     $str_result .= "&error_desc=4";
@@ -102,7 +102,7 @@ $trend_dir = $row['trend_dir'];
 $trend_time = strtotime($row['trend_time']);
 mysql_free_result($result);
 
-//---
+//--- возврат результата
 $str_result = "error=" . ERR_NO_ERROR;
 $str_result .= "&error_desc=0";
 $str_result .= "&trend_dir=" . $trend_dir;
